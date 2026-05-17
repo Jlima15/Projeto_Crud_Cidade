@@ -36,14 +36,14 @@ public class CidadeDAL extends ConexaoMySQL {
         ps = con.prepareStatement(SQL);
         ps.setInt(1, cidId);
         rs = ps.executeQuery();
-        CidadeDTO cliente = new CidadeDTO();
+        CidadeDTO cidade = new CidadeDTO();
         if (rs.next()) {
-            cliente.setCidId(rs.getInt("cidId"));
-            cliente.setCidNome(rs.getString("cidNome"));
-            cliente.setCidCEP(rs.getString("cidCEP"));
+            cidade.setCidId(rs.getInt("cidId"));
+            cidade.setCidNome(rs.getString("cidNome"));
+            cidade.setCidCEP(rs.getString("cidCEP"));
             fecharBD();
         }
-        return cliente;
+        return cidade;
     }
     
     //Método que vai selecionar todos os clientes da nossa tabela cliente e ordenar por nome do cliente
@@ -53,16 +53,16 @@ public class CidadeDAL extends ConexaoMySQL {
         SQL = "SELECT * FROM tbl_Cidade ORDER BY cidId";
         ps = con.prepareStatement(SQL);
         rs = ps.executeQuery();
-        List listaCliente = new ArrayList();
+        List listaCidade = new ArrayList();
         while (rs.next()) {
-            CidadeDTO cliente = new CidadeDTO();
-            cliente.setCidId(rs.getInt("cidId"));
-            cliente.setCidNome(rs.getString("cidNome"));
-            cliente.setCidCEP(rs.getString("cidCEP"));
-            listaCliente.add(cliente);
+            CidadeDTO cidade = new CidadeDTO();
+            cidade.setCidId(rs.getInt("cidId"));
+            cidade.setCidNome(rs.getString("cidNome"));
+            cidade.setCidCEP(rs.getString("cidCEP"));
+            listaCidade.add(cidade);
         }
         fecharBD();
-        return listaCliente;
+        return listaCidade;
     }
     
     //Método que vai alterar um único cliente da tabela cliente, através da sua ChavePrimária - PK(cliID)
@@ -71,9 +71,9 @@ public class CidadeDAL extends ConexaoMySQL {
         abrirBD();
         SQL = "UPDATE tbl_Cidade SET cidNome = ?, cidCEP = ? WHERE cidId = ?";
         ps = con.prepareStatement(SQL);
-        ps.setInt(1, cidade.getCidId());
-        ps.setString(2, cidade.getCidNome());
-        ps.setString(3, cidade.getCidCEP());
+        ps.setString(1, cidade.getCidNome());
+        ps.setString(2, cidade.getCidCEP());
+        ps.setInt(3, cidade.getCidId());
         ps.execute();
         fecharBD();
     }

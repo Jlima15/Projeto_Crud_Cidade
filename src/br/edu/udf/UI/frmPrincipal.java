@@ -4,6 +4,8 @@
  */
 package br.edu.udf.UI;
 
+import br.edu.udf.DAL.CidadeDAL;
+import br.edu.udf.DTO.CidadeDTO;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
@@ -12,7 +14,11 @@ import javax.swing.JOptionPane;
  * @author joao1
  */
 public class frmPrincipal extends javax.swing.JFrame {
+    // instanciando a classe ClienteDTO do pacote DTO e criando seu objeto cliente
 
+    CidadeDTO cliente = new CidadeDTO();
+// Instancia a classe ClientesDAL
+    CidadeDAL dal = new CidadeDAL();
     /**
      * Creates new form frmPrincipal
      */
