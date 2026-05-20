@@ -6,7 +6,11 @@ package br.edu.udf.UI;
 
 import br.edu.udf.DAL.CidadeDAL;
 import br.edu.udf.DTO.CidadeDTO;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +26,7 @@ public class frmCidades extends javax.swing.JFrame {
      */
     public frmCidades() {
         initComponents();
+        inserirIcone();
     }
 
     /**
@@ -74,12 +79,16 @@ public class frmCidades extends javax.swing.JFrame {
         btnAlterarCid.addActionListener(this::btnAlterarCidActionPerformed);
 
         btnExcluirCid.setText("Excluir");
+        btnExcluirCid.addActionListener(this::btnExcluirCidActionPerformed);
 
         btnMostrarCid.setText("Exibir Todas as Cidades");
+        btnMostrarCid.addActionListener(this::btnMostrarCidActionPerformed);
 
         btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(this::btnLimparActionPerformed);
 
         btnSair.setText("Sair");
+        btnSair.addActionListener(this::btnSairActionPerformed);
 
         dvgCidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +114,11 @@ public class frmCidades extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        dvgCidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dvgCidadesMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(dvgCidades);
@@ -253,19 +267,17 @@ txtNomeCid.requestFocus();
             } else {
                 cidade.setCidId((int) Long.parseLong(txtCodCid.getText()));
                 cidade.setCidNome(txtNomeCid.getText());
-                cliente.setCliEndereco(txtEnderecoCli.getText());
-                cliente.setCliCPF(txtCPFCli.getText());
+                cidade.setCidCEP(txtCepCid.getText());
+                
                 try {
-                    dal.alterarCliente(cliente);
-                    JOptionPane.showMessageDialog(null, "Cliente " + cliente.getCliNome() + "
-Alterado Com Sucesso !!!!");
+                    dal.alterarCidade(cidade);
+                    JOptionPane.showMessageDialog(null, "Cliente " + cidade.getCidNome() + "Alterado Com Sucesso !!!!");
 // Limpa os campos
-txtCodigoCli.setText(null);
-                    txtNomeCli.setText(null);
-                    txtEnderecoCli.setText(null);
-                    txtCPFCli.setText(null);
-                    txtCodigoCli.requestFocus();
-                    btnMostrarTodosCli.setEnabled(true);
+                    txtCodCid.setText(null);
+                    txtNomeCid.setText(null);
+                    txtCepCid.setText(null);
+                    txtCodCid.requestFocus();
+                    btnMostrarCid.setEnabled(true);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Erro Na Conexão: "
                             + ex.getMessage());
@@ -327,6 +339,133 @@ txtCodigoCli.setText(null);
         }
     }//GEN-LAST:event_btnPesquisarCidIDActionPerformed
 
+    private void btnExcluirCidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCidActionPerformed
+        // TODO add your handling code here:
+        if (txtCodCid.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "O campo Código do Cliente está vazio!!!!");
+            txtCodCid.requestFocus();
+        } else {
+            try {
+                dal.abrirBD();
+                CidadeDTO cidadeExistente
+                        = dal.selecionarCidadePorID(Integer.valueOf(txtCodCid.getText()));
+                if (cidadeExistente == null || cidadeExistente.getCidId() == 0) {
+                    JOptionPane.showMessageDialog(null, "Cliente não encontrado na base de dados !!!!");
+                    txtCodCid.setText(null);
+                    txtCodCid.requestFocus();
+                } else {
+                    Object[] opcoes = {"Sim", "Não"};
+                    int contador = JOptionPane.showOptionDialog(
+                            null, "Deseja Excluir Este Cliente: " + cidadeExistente.getCidNome() + "?",
+                            "Exclusão de Cidades !!!!", JOptionPane.YES_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            null, opcoes, opcoes[0]);
+                    if (contador == JOptionPane.YES_OPTION) {
+                        dal.excluirCidade(Integer.valueOf(txtCodCid.getText()));
+                        JOptionPane.showMessageDialog(null, "Cidade Excluída com Sucesso!!!!");
+// Limpa os campos
+                        txtCodCid.setText(null);
+                        txtNomeCid.setText("");
+                        txtCepCid.setText("");
+                        txtCodCid.requestFocus();
+                    } else {
+                        txtCodCid.setText(null);
+                        txtCodCid.setText("");
+                        txtNomeCid.setText("");
+                        txtCepCid.setText("");
+                        txtCodCid.requestFocus();
+// Limpa todas as linhas da tabela
+                        DefaultTableModel tabm = (DefaultTableModel) dvgCidades.getModel();
+                        tabm.setRowCount(0);
+                    }
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Erro Na Conexão. Verifique com oAdministrador do {Banco}  de Dados   !!!!");
+}
+finally
+{
+try {
+                    dal.fecharBD();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao fechar conexão: "
+                            + e.getMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_btnExcluirCidActionPerformed
+
+    private void btnMostrarCidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarCidActionPerformed
+        // TODO add your handling code here:
+        // Limpa todas as caixas de texto
+        txtCodCid.setText("");
+        txtNomeCid.setText("");
+        txtCepCid.setText("");
+// Cria a lista de todos os clientes dentro da tabela Cliente
+        List<CidadeDTO> selecionaTodosCidades = new ArrayList<>();
+        try {
+            dal.abrirBD();
+            selecionaTodosCidades = dal.selecionarListaCidade();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro Na Conexão. Verifique com o Administrador do {Banco}  de Dados !!!!");
+}
+finally
+{
+try {
+                dal.fecharBD();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar conexão: "
+                        + e.getMessage());
+            }
+        }
+// Prepara a tabela para receber os dados da busca (Lista)
+        DefaultTableModel tabm = (DefaultTableModel) dvgCidades.getModel();
+        tabm.setRowCount(0); // limpa todas as linhas
+        for (CidadeDTO cidade : selecionaTodosCidades) {
+            tabm.addRow(new Object[]{
+                cidade.getCidId(),
+                cidade.getCidNome(),
+                cidade.getCidCEP(),
+            });
+        }
+// Posiciona o cursor no campo Nome
+        txtNomeCid.requestFocus();
+    }//GEN-LAST:event_btnMostrarCidActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        // Fecha o formulário de clientes e volta para o formulário principal
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void dvgCidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dvgCidadesMouseClicked
+        // TODO add your handling code here:
+        // Preenche os campos do formulário com os dados da linha selecionada
+        int linhaSelecionada = dvgCidades.getSelectedRow();
+        txtCodCid.setText(dvgCidades.getValueAt(linhaSelecionada, 0).toString());
+        txtNomeCid.setText(dvgCidades.getValueAt(linhaSelecionada, 1).toString());
+        txtCepCid.setText(dvgCidades.getValueAt(linhaSelecionada, 2).toString());
+        
+// Ajusta os botões
+        btnCadastroCid.setEnabled(false);
+        btnAlterarCid.setEnabled(true);
+        btnExcluirCid.setEnabled(true);
+        
+    }//GEN-LAST:event_dvgCidadesMouseClicked
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        // TODO add your handling code here:
+        // Limpa os campos do formulário
+        btnCadastroCid.setEnabled(true);
+        btnMostrarCid.setEnabled(true);
+        txtCodCid.setText("");
+        txtNomeCid.setText("");
+        txtCepCid.setText("");
+        txtNomeCid.requestFocus();
+// Limpa todas as linhas da tabela
+        DefaultTableModel tabm = (DefaultTableModel) dvgCidades.getModel();
+        tabm.setRowCount(0);
+    }//GEN-LAST:event_btnLimparActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -369,4 +508,8 @@ txtCodigoCli.setText(null);
     private javax.swing.JTextField txtCodCid;
     private javax.swing.JTextField txtNomeCid;
     // End of variables declaration//GEN-END:variables
+
+    private void inserirIcone() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconecliente.png")));
+    }
 }

@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class frmPrincipal extends javax.swing.JFrame {
     // instanciando a classe ClienteDTO do pacote DTO e criando seu objeto cliente
 
-    CidadeDTO cliente = new CidadeDTO();
+    CidadeDTO cidade = new CidadeDTO();
 // Instancia a classe ClientesDAL
     CidadeDAL dal = new CidadeDAL();
     /**
@@ -96,6 +96,11 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void itmCadCidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCadCidActionPerformed
         // TODO add your handling code here:
+        //Verfica se o formulário é nulo e está visivel
+        if ((frmCidades == null) || (!frmCidades.isVisible())) {
+            frmCidades = new frmCidades();
+            frmCidades.setVisible(true);
+        }
     }//GEN-LAST:event_itmCadCidActionPerformed
 
     /**
@@ -144,5 +149,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void inserirIcone() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconecidade.png")));
     }
+    
+    //Declarando o objeto formClientes
+    private frmCidades frmCidades;
 
 }

@@ -15,13 +15,13 @@ public class ImagemFundoCidade extends JPanel {
     public ImagemFundoCidade() {
         // Caminho da imagem (coloque na pasta raiz do projeto ou use caminho completo)
         // Altere "nomeimagem.png" para o nome do seu arquivo
-        this.imagem = new ImageIcon(getClass().getResource("fundopessoa.png")).getImage();
+        this.imagem = new ImageIcon(getClass().getResource("fundocidade.png")).getImage();
     }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (imagem != null) {
-            // Desenha a imagem preenchendo todo o espaço disponível
+            // Desenha a imagem preenchendo todo o espaÃ§o disponÃ­vel
             // g.drawImage(imagem, x, y, largura, altura, observador)
             // Usamos getWidth() e getHeight() para a imagem preencher todo o painel          
             g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
