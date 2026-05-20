@@ -13,14 +13,14 @@ import java.util.List;
  * @author joao1
  */
 public class CidadeDAL extends ConexaoMySQL {
-    //Método para incluir um cliente na tabela cliente
+    //Método para incluir uma cidade na tabela da cidade
 
     public void incluirCidade(CidadeDTO cidade) throws Exception {
 //Prepara a conexão com o MySQL
         abrirBD();
         SQL = "INSERT INTO tbl_Cidade (cidId, cidNome, cidCEP) VALUES (?, ?, ?)";
         ps = con.prepareStatement(SQL);
-//Busca os valores da classe ClienteDTO
+//Busca os valores da classe CidadeDTO
         ps.setInt(1, cidade.getCidId());
         ps.setString(2, cidade.getCidNome());
         ps.setString(3, cidade.getCidCEP());
@@ -28,7 +28,7 @@ public class CidadeDAL extends ConexaoMySQL {
         fecharBD();
     }
     
-    //Este método vai buscar um único cliente na tabela cliente, através da sua Chave Primária - PK(cliID)
+    //Este método vai buscar uma únics cidade  na tabela cidade, através da sua Chave Primária - PK(cidID)
 
     public CidadeDTO selecionarCidadePorID(Integer cidId) throws Exception {
         abrirBD();
@@ -46,7 +46,7 @@ public class CidadeDAL extends ConexaoMySQL {
         return cidade;
     }
     
-    //Método que vai selecionar todos os clientes da nossa tabela cliente e ordenar por nome do cliente
+    //Método que vai selecionar todas as cidades da nossa tabela cidade e ordenar por nome das cidades
 
     public List selecionarListaCidade() throws Exception {
         abrirBD();
@@ -65,7 +65,7 @@ public class CidadeDAL extends ConexaoMySQL {
         return listaCidade;
     }
     
-    //Método que vai alterar um único cliente da tabela cliente, através da sua ChavePrimária - PK(cliID)
+    //Método que vai alterar uma única cidade da tabela cidade, através da sua ChavePrimária - PK(cliID)
 
     public void alterarCidade(CidadeDTO cidade) throws Exception {
         abrirBD();
@@ -78,7 +78,7 @@ public class CidadeDAL extends ConexaoMySQL {
         fecharBD();
     }
     
-    //Método que vai excluir um único cliente da tabela cliente, através da sua Chave Primária - PK(cliID)
+    //Método que vai excluir uma única cidade da tabela cidade, através da sua Chave Primária - PK(cliID)
 
     public void excluirCidade(Integer cidId) throws Exception {
         abrirBD();

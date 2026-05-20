@@ -219,7 +219,7 @@ txtNomeCid.requestFocus();
                     cidade.setCidCEP(txtCepCid.getText());
 //Chama o método incluirCliente da camada DAL
                     dal.incluirCidade(cidade);
-                    JOptionPane.showMessageDialog(null, "Cidade " + txtNomeCid.getText() + " incluído com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Cidade " + txtNomeCid.getText() + " incluída com sucesso!");
 // Limpa os campos
                     txtNomeCid.setText("");
                     txtCepCid.setText("");
@@ -256,13 +256,13 @@ txtNomeCid.requestFocus();
         try {
             dal.abrirBD();
             if (txtCodCid.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "O campo Código do Cliente está vazio!!!!");
+                JOptionPane.showMessageDialog(null, "O campo Código da cidade está vazia!!!!");
                 txtCodCid.requestFocus();
             } else if (txtNomeCid.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "O campo Nome do Cliente está vazio!!!!");
+                JOptionPane.showMessageDialog(null, "O campo Nome da cidade está vazia!!!!");
                 txtNomeCid.requestFocus();
             } else if (txtCepCid.getText().equals(" . . - ")) {
-                JOptionPane.showMessageDialog(null, "O campo CPF do Cliente está vazio!!!!");
+                JOptionPane.showMessageDialog(null, "O campo CEP da cidade está vazia!!!!");
                 txtCepCid.requestFocus();
             } else {
                 cidade.setCidId((int) Long.parseLong(txtCodCid.getText()));
@@ -271,7 +271,7 @@ txtNomeCid.requestFocus();
                 
                 try {
                     dal.alterarCidade(cidade);
-                    JOptionPane.showMessageDialog(null, "Cliente " + cidade.getCidNome() + "Alterado Com Sucesso !!!!");
+                    JOptionPane.showMessageDialog(null, "Cidade " + cidade.getCidNome() + "Alterada Com Sucesso !!!!");
 // Limpa os campos
                     txtCodCid.setText(null);
                     txtNomeCid.setText(null);
@@ -298,14 +298,14 @@ txtNomeCid.requestFocus();
 
     private void btnPesquisarCidIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarCidIDActionPerformed
         // TODO add your handling code here:
-        //Verifica se o código do cliente está vazio
+        //Verifica se o código da cidade está vazio
         if ("".equals(txtCodCid.getText())) {
-            JOptionPane.showMessageDialog(null, "Código do Cliente não pode ser vazio, favor digite um código válido !!!!");
-//Após a mensagem de erro, o foco do cursor vai ficar no campo Código do Cliente
+            JOptionPane.showMessageDialog(null, "Código da cidade não pode ser vazio, favor digite um código válido !!!!");
+//Após a mensagem de erro, o foco do cursor vai ficar no campo Código da cidade
  txtCodCid.requestFocus();
         } else {
-//Faz o tratamento de erro, para verificar se a tabela Clientes está vazia
-//O botão Incluir vai ficar dsesabilitado
+//Faz o tratamento de erro, para verificar se a tabela cidade está vazia
+//O botão Cadastrar vai ficar desabilitado
             btnCadastroCid.setEnabled(false);
 //O botão Alterar vai ficar habilitado
             btnAlterarCid.setEnabled(true);
@@ -314,7 +314,7 @@ txtNomeCid.requestFocus();
 //O botão Mostrar Todos vai ficar habilitado
             btnMostrarCid.setEnabled(true);
             try {
-//Chama o método selecionarClientePorID da classe ClienteDAL
+//Chama o método selecionarCidadePorID da classe CidadeDAL
                 cidade = dal.selecionarCidadePorID(Integer.valueOf(txtCodCid.getText()));
                 if (txtCodCid != null) {
 //Mostra os dados do Cliente pelo seu código
@@ -322,7 +322,7 @@ txtNomeCid.requestFocus();
                     txtCepCid.setText(cidade.getCidCEP());
                    
                 } else {
-                    JOptionPane.showMessageDialog(null, "Cliente Não Encontrado. Favor Tente Novamente !!!!");
+                    JOptionPane.showMessageDialog(null, "Cidade Não Encontrada. Favor Tente Novamente !!!!");
 // Limpa os campos
                     txtNomeCid.setText(null);
                     txtCepCid.setText(null);
@@ -332,7 +332,7 @@ txtNomeCid.requestFocus();
                     btnCadastroCid.setEnabled(true);
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao Buscar Cliente. Favor Tente Novamente !!!!");
+                JOptionPane.showMessageDialog(null, "Erro ao Buscar Cidade. Favor Tente Novamente !!!!");
                 txtCodCid.setText(null);
                 txtCodCid.requestFocus();
             }
@@ -342,7 +342,7 @@ txtNomeCid.requestFocus();
     private void btnExcluirCidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCidActionPerformed
         // TODO add your handling code here:
         if (txtCodCid.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "O campo Código do Cliente está vazio!!!!");
+            JOptionPane.showMessageDialog(null, "O campo Código da Cidade está vazia!!!!");
             txtCodCid.requestFocus();
         } else {
             try {
@@ -350,13 +350,13 @@ txtNomeCid.requestFocus();
                 CidadeDTO cidadeExistente
                         = dal.selecionarCidadePorID(Integer.valueOf(txtCodCid.getText()));
                 if (cidadeExistente == null || cidadeExistente.getCidId() == 0) {
-                    JOptionPane.showMessageDialog(null, "Cliente não encontrado na base de dados !!!!");
+                    JOptionPane.showMessageDialog(null, "Cidade não encontrada na base de dados !!!!");
                     txtCodCid.setText(null);
                     txtCodCid.requestFocus();
                 } else {
                     Object[] opcoes = {"Sim", "Não"};
                     int contador = JOptionPane.showOptionDialog(
-                            null, "Deseja Excluir Este Cliente: " + cidadeExistente.getCidNome() + "?",
+                            null, "Deseja Excluir Esta Cidade: " + cidadeExistente.getCidNome() + "?",
                             "Exclusão de Cidades !!!!", JOptionPane.YES_OPTION,
                             JOptionPane.QUESTION_MESSAGE,
                             null, opcoes, opcoes[0]);
@@ -380,7 +380,7 @@ txtNomeCid.requestFocus();
                     }
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Erro Na Conexão. Verifique com oAdministrador do {Banco}  de Dados   !!!!");
+                JOptionPane.showMessageDialog(null, "Erro Na Conexão. Verifique com o Administrador do {Banco}  de Dados   !!!!");
 }
 finally
 {

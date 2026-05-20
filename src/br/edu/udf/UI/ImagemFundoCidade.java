@@ -16,6 +16,7 @@ public class ImagemFundoCidade extends JPanel {
         // Caminho da imagem (coloque na pasta raiz do projeto ou use caminho completo)
         // Altere "nomeimagem.png" para o nome do seu arquivo
         this.imagem = new ImageIcon(getClass().getResource("fundocidade.png")).getImage();
+        
     }
     @Override
     protected void paintComponent(Graphics g) {

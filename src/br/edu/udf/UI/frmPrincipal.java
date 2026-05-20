@@ -36,6 +36,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        imagemFundoCidade1 = new br.edu.udf.UI.ImagemFundoCidade();
         menuBar = new javax.swing.JMenuBar();
         mnuAppCidade = new javax.swing.JMenu();
         itmSair = new javax.swing.JMenuItem();
@@ -46,6 +48,28 @@ public class frmPrincipal extends javax.swing.JFrame {
         setTitle("Cadastro de Cidades");
         setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         setResizable(false);
+
+        javax.swing.GroupLayout imagemFundoCidade1Layout = new javax.swing.GroupLayout(imagemFundoCidade1);
+        imagemFundoCidade1.setLayout(imagemFundoCidade1Layout);
+        imagemFundoCidade1Layout.setHorizontalGroup(
+            imagemFundoCidade1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        imagemFundoCidade1Layout.setVerticalGroup(
+            imagemFundoCidade1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imagemFundoCidade1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imagemFundoCidade1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         mnuAppCidade.setMnemonic('f');
         mnuAppCidade.setText("Aplicativo Cadastro de Cidade");
@@ -73,11 +97,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -139,8 +163,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private br.edu.udf.UI.ImagemFundoCidade imagemFundoCidade1;
     private javax.swing.JMenuItem itmCadCid;
     private javax.swing.JMenuItem itmSair;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu mnuAppCidade;
     private javax.swing.JMenu mnuCadastro;
