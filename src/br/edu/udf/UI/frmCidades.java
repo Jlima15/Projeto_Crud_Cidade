@@ -134,31 +134,31 @@ public class frmCidades extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(130, 130, 130)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCepCid, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNomeCid, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastroCid)
-                            .addComponent(btnAlterarCid)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAlterarCid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCadastroCid, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtCodCid, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(67, 67, 67)
-                        .addComponent(btnPesquisarCidID)))
-                .addContainerGap(334, Short.MAX_VALUE))
+                        .addComponent(btnPesquisarCidID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(320, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnMostrarCid)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnExcluirCid))
+                        .addComponent(btnMostrarCid, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(btnExcluirCid, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSair)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnLimpar)))
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
         );
@@ -433,7 +433,7 @@ try {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         // TODO add your handling code here:
-        // Fecha o formulário de clientes e volta para o formulário principal
+        // Fecha o formulário de cidades e volta para o formulário principal
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
@@ -510,6 +510,6 @@ try {
     // End of variables declaration//GEN-END:variables
 
     private void inserirIcone() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconecliente.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconecidade.png")));
     }
 }

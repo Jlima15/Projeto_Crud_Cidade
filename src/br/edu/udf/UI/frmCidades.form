@@ -36,38 +36,38 @@
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtCepCid" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="txtNomeCid" min="-2" pref="71" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnCadastroCid" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAlterarCid" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnAlterarCid" max="32767" attributes="0"/>
+                          <Component id="btnCadastroCid" pref="94" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="txtCodCid" min="-2" pref="71" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                      <Component id="btnPesquisarCidID" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnPesquisarCidID" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="334" max="32767" attributes="0"/>
+              <EmptySpace pref="320" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="btnMostrarCid" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="btnExcluirCid" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnMostrarCid" min="-2" pref="170" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="btnExcluirCid" min="-2" pref="93" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnSair" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="btnSair" min="-2" pref="83" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="btnLimpar" min="-2" pref="87" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>

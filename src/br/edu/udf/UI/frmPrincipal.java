@@ -176,7 +176,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconecidade.png")));
     }
     
-    //Declarando o objeto formClientes
+    //Declarando o objeto frmCidades
     private frmCidades frmCidades;
 
 }
